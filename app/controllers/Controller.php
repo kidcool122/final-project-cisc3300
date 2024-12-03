@@ -2,18 +2,15 @@
 
 namespace app\controllers;
 
-abstract class Controller {
+class Controller {
+    protected function returnView($viewPath) {
+        $fullPath = __DIR__ . '/../../public/assets/views/' . $viewPath;
 
-    public function returnView($pathToView) {
-        require $pathToView;
-        exit();
+        // Removed debugging output
+        if (!file_exists($fullPath)) {
+            die("View file not found: " . $fullPath);
+        }
+
+        require_once $fullPath;
     }
-
-    public function returnJSON($json) {
-        header("Content-Type: application/json");
-        echo json_encode($json);
-        exit();
-    }
-
-
 }

@@ -1,3 +1,4 @@
+// Register User
 document.getElementById('registerForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -8,10 +9,8 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         credit_info: document.getElementById('creditInfo').value.trim(),
     };
 
-    console.log('Registering user:', userData); // Debugging
-
     try {
-        const response = await fetch('http://localhost:8888/api/register', {
+        const response = await fetch('/api/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData),
@@ -19,12 +18,18 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
         const data = await response.json();
         alert(data.message);
+
+        if (data.success) {
+            // Reload the page to show the user as logged in
+            window.location.reload();
+        }
     } catch (error) {
         console.error('Error registering user:', error);
-        alert('An error occurred during registration. Please try again.');
+        alert('An error occurred during registration.');
     }
 });
 
+// Login User
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -33,10 +38,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         password: document.getElementById('loginPassword').value.trim(),
     };
 
-    console.log('Logging in user:', loginData); // Debugging
-
     try {
-        const response = await fetch('http://localhost:8888/api/login', {
+        const response = await fetch('/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginData),
@@ -47,12 +50,46 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         if (data.success) {
             alert('Login successful!');
             sessionStorage.setItem('user', JSON.stringify(data.user));
-            window.location.href = '/lemons'; // Redirect
+            window.location.reload();
         } else {
             alert(data.message);
         }
     } catch (error) {
         console.error('Error logging in:', error);
-        alert('An error occurred during login. Please try again.');
+        alert('An error occurred during login.');
+    }
+});
+
+// Tab Switching
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+    document.getElementById(tabId).style.display = 'block';
+}
+
+// Slider Interaction
+function showAlternateLogo() {
+    document.getElementById('overlay-logo').style.display = 'block';
+}
+
+function hideAlternateLogo() {
+    document.getElementById('overlay-logo').style.display = 'none';
+}
+
+function navigateTo(page) {
+    const baseUrl = window.location.origin;
+    window.location.href = `${baseUrl}/${page}`;
+}
+
+// Logout Functionality
+function logout() {
+    sessionStorage.removeItem('user');
+    window.location.reload();
+}
+
+// Populate Username
+document.addEventListener('DOMContentLoaded', function () {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (user) {
+        document.getElementById('username-display').textContent = `Hello, ${user.username}`;
     }
 });

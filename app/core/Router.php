@@ -11,32 +11,52 @@ class Router {
     function __construct()
     {
         $this->urlArray = $this->routeSplit();
-        $this->handleMainRoutes();
-        $this->handleUserRoutes();
+        $this->handleRoutes();
     }
 
     protected function routeSplit() {
         $removeQueryParams = strtok($_SERVER["REQUEST_URI"], '?');
-        return explode("/", $removeQueryParams);
+        return explode("/", trim($removeQueryParams, "/")); 
     }
 
-    protected function handleMainRoutes() {
-        if ($this->urlArray[1] === '' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+    protected function handleRoutes() {
+        // Homepage
+        if (empty($this->urlArray[0]) || $this->urlArray[0] === 'home') {
             $mainController = new MainController();
             $mainController->homepage();
-        }
-    }
-
-    protected function handleUserRoutes() {
-        if ($this->urlArray[1] === 'users' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-            $userController = new UserController();
-            $userController->usersView();
+            return;
         }
 
-        //give json/API requests a api prefix
-        if ($this->urlArray[1] === 'api' && $this->urlArray[2] === 'users' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-            $userController = new UserController();
-            $userController->getUsers();
+        // Lemons
+        if ($this->urlArray[0] === 'lemons') {
+            $mainController = new MainController();
+            $mainController->lemonsView();
+            return;
         }
+
+        // Limes
+        if ($this->urlArray[0] === 'limes') {
+            $mainController = new MainController();
+            $mainController->limesView();
+            return;
+        }
+
+        // API routes
+        if ($this->urlArray[0] === 'api') {
+            $userController = new UserController();
+
+            if ($this->urlArray[1] === 'register' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                $userController->registerUser();
+                return;
+            }
+
+            if ($this->urlArray[1] === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                $userController->loginUser();
+                return;
+            }
+        }
+
+        http_response_code(404);
+        echo "Page not found.";
     }
 }

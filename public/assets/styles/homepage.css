@@ -1,3 +1,93 @@
-p {
-    color: blue;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.hover-box {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.fruit-container {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fruit-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.fruit-container p {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #555;
+}
+
+.fruit {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white; 
+    overflow: hidden;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+    position: relative; 
+}
+
+.fruit img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    transition: transform 0.3s ease-in-out;
+}
+
+.fruit.lemon {
+    background-color: #ffeb3b; 
+}
+
+.fruit.lemon:hover img {
+    transform: scale(1.1);
+}
+
+.fruit.lime {
+    background-color: #4caf50; 
+}
+
+.fruit.lime:hover img {
+    transform: scale(1.1);
+}
+
+.fruit-container:hover {
+    transform: translateY(-10px); 
+}
+
+@keyframes squeeze {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scaleY(0.6) scaleX(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.squeezing img {
+    animation: squeeze 0.6s ease-in-out;
 }

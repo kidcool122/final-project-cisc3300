@@ -3,14 +3,15 @@
 namespace app\controllers;
 
 class MainController extends Controller {
-
     public function homepage() {
-        //remember to route relative to index.php
-        //require page and exit to return an HTML page
-        $this->returnView('./assets/views/main/homepage.html');
+        $this->returnView('main/homepage.html');
     }
 
-    public function notFound() {
+    public function lemonsView() {
+        $this->returnView('users/LemonsView.html');
     }
 
+    public function limesView() {
+        $this->returnView('users/LimesView.html');
+    }
 }

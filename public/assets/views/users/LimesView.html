@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limes - Startup Assistance</title>
+    <link rel="stylesheet" href="assets/styles/site.css">
+    <script src="assets/js/site.js" defer></script>
+</head>
+<body class="limes">
+    <header>
+        <div class="logo-container" onmouseover="showAlternateLogo()" onmouseout="hideAlternateLogo()">
+            <img src="assets/images/lime.png" alt="Lime Logo" class="logo" id="main-logo">
+            <img src="assets/images/lemon.png" alt="Lemon Logo" class="logo-overlay" id="overlay-logo" onclick="navigateTo('lemons')">
+        </div>
+        <h1>Limes - Startup Assistance</h1>
+        <div class="user-info">
+            <span id="username-display">Hello, Guest</span>
+            <div class="dropdown">
+                <button id="profileButton">Profile ▼</button>
+                <div class="dropdown-content">
+                    <a href="#">View Profile</a>
+                    <a href="#">Edit Profile</a>
+                    <a href="#" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="tabs">
+            <button class="tab-button" onclick="showTab('register')">Register</button>
+            <button class="tab-button" onclick="showTab('login')">Login</button>
+            <button class="tab-button" onclick="showTab('testimonials')">Testimonials</button>
+            <button class="tab-button" onclick="showTab('bio')">Bio</button>
+            <button class="tab-button" onclick="showTab('team')">Executive Team</button>
+        </div>
+
+        <div class="tab-content" id="register" style="display: none;">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="text" id="companyName" placeholder="Company Name" required>
+                <input type="text" id="creditInfo" placeholder="Credit Info (Optional)">
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <div class="tab-content" id="login" style="display: none;">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="tab-content" id="testimonials">
+            <h2>Testimonials</h2>
+            <p>"Limes Startup Assistance helped us launch our business!" - Excited Founder</p>
+            <p>"Without limes, we couldn't even begin to think about lemon" - Excited Founder</p>
+        </div>
+
+        <div class="tab-content" id="bio" style="display: none;">
+            <h2>Bio</h2>
+            <p>Limes Startup Assistance specializes in helping entrepreneurs establish lemonade stands. We know a lot about comparisons.</p>
+        </div>
+
+        <div class="tab-content" id="team" style="display: none;">
+            <h2>Executive Team</h2>
+            <div class="team-member">
+                <div class="circle">
+                    <img src="assets/images/executive1.png" alt="Lime 1">
+                </div>
+                <p> Lisa Lime - CEO</p>
+            </div>
+            <div class="team-member">
+                <div class="circle">
+                    <img src="assets/images/executive2.png" alt="Lime 2">
+                </div>
+                <p> Linda Lime - COO</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

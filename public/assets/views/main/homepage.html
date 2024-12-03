@@ -1,12 +1,30 @@
-<html>
-    <head>
-        <!-- remember to route relative to index.php  -->
-        <script type="text/javascript" src="./assets/js/homepage.js"></script>
-        <link rel="stylesheet" href="./assets/styles/homepage.css">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemonade Stand - Choose Your Path</title>
+    <link rel="stylesheet" href="assets/styles/homepage.css">
+    <script src="assets/js/homepage.js" defer></script>
+</head>
+<body>
+    <div class="hover-box">
 
-    <body>
-        <p>homepage!</p>
-    </body>
+        <div id="lemons" class="fruit-container" onclick="animateAndNavigate('lemons')">
+            <h2>Lemon</h2>
+            <div class="fruit lemon">
+                <img src="assets/images/lemon.png" alt="Lemon">
+            </div>
+            <p>For those who have</p>
+        </div>
+
+        <div id="limes" class="fruit-container" onclick="animateAndNavigate('limes')">
+            <h2>Lime</h2>
+            <div class="fruit lime">
+                <img src="assets/images/lime.png" alt="Lime">
+            </div>
+            <p>For those who want</p>
+        </div>
+    </div>
+</body>
 </html>
-

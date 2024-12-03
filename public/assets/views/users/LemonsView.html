@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemons - Consulting</title>
+    <link rel="stylesheet" href="assets/styles/site.css">
+    <script src="assets/js/site.js" defer></script>
+</head>
+<body class="lemons">
+    <header>
+        <div class="logo-container" onmouseover="showAlternateLogo()" onmouseout="hideAlternateLogo()">
+            <img src="assets/images/lemon.png" alt="Lemon Logo" class="logo" id="main-logo">
+            <img src="assets/images/lime.png" alt="Lime Logo" class="logo-overlay" id="overlay-logo" onclick="navigateTo('limes')">
+        </div>
+        <h1>Lemons - Consulting</h1>
+        <div class="user-info">
+            <span id="username-display">Hello, Guest</span>
+            <div class="dropdown">
+                <button id="profileButton">Profile ▼</button>
+                <div class="dropdown-content">
+                    <a href="#">View Profile</a>
+                    <a href="#">Edit Profile</a>
+                    <a href="#" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="tabs">
+            <button class="tab-button" onclick="showTab('register')">Register</button>
+            <button class="tab-button" onclick="showTab('login')">Login</button>
+            <button class="tab-button" onclick="showTab('testimonials')">Testimonials</button>
+            <button class="tab-button" onclick="showTab('bio')">Bio</button>
+            <button class="tab-button" onclick="showTab('team')">Executive Team</button>
+        </div>
+
+        <div class="tab-content" id="register" style="display: none;">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="text" id="companyName" placeholder="Company Name" required>
+                <input type="text" id="creditInfo" placeholder="Credit Info (Optional)">
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <div class="tab-content" id="login" style="display: none;">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+ 
+        <div class="tab-content" id="testimonials">
+            <h2>Testimonials</h2>
+            <p>"Lemons Consulting helped us triple our revenue! I can finally see my newborn after 5 years" - Happy Client</p>
+            <p>"Lemons are not the best, but god damn are they lemons" - Happier Client </p>
+
+        </div>
+
+        <div class="tab-content" id="bio" style="display: none;">
+            <h2>Bio</h2>
+            <p>Lemons Consulting specializes in helping existing lemonade stands sell more lemons. Trust me, we know our lemons</p>
+        </div>
+  
+        <div class="tab-content" id="team" style="display: none;">
+            <h2>Executive Team</h2>
+            <div class="team-member">
+                <div class="circle">
+                    <img src="data:image/jpeg;base64,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" alt="Lemon 1">
+                </div>
+                <p> Don Lemon - CEO</p>
+            </div>
+            <div class="team-member">
+                <div class="circle">
+                    <img src="data:image/webp;base64,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" alt="Lemon 2">
+                </div>
+                <p> Earl of Lemongrab - COO</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
