@@ -54,6 +54,11 @@ class Router {
                 $userController->loginUser();
                 return;
             }
+
+            if ($this->urlArray[1] === 'user' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+                $userController->getUserDetails();
+                return;
+            }
         }
 
         http_response_code(404);
