@@ -20,46 +20,53 @@ class Router {
     }
 
     protected function handleRoutes() {
-        // Homepage
         if (empty($this->urlArray[0]) || $this->urlArray[0] === 'home') {
             $mainController = new MainController();
             $mainController->homepage();
             return;
         }
 
-        // Lemons
         if ($this->urlArray[0] === 'lemons') {
             $mainController = new MainController();
             $mainController->lemonsView();
             return;
         }
 
-        // Limes
         if ($this->urlArray[0] === 'limes') {
             $mainController = new MainController();
             $mainController->limesView();
             return;
         }
 
-        // API routes
-        if ($this->urlArray[0] === 'api') {
-            $userController = new UserController();
+       // API routes
+if ($this->urlArray[0] === 'api') {
+    $userController = new UserController();
 
-            if ($this->urlArray[1] === 'register' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-                $userController->registerUser();
-                return;
-            }
+    if ($this->urlArray[1] === 'register' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $userController->registerUser();
+        return;
+    }
 
-            if ($this->urlArray[1] === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-                $userController->loginUser();
-                return;
-            }
+    if ($this->urlArray[1] === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $userController->loginUser();
+        return;
+    }
 
-            if ($this->urlArray[1] === 'user' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-                $userController->getUserDetails();
-                return;
-            }
-        }
+    if ($this->urlArray[1] === 'logout' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $userController->logoutUser();
+        return;
+    }
+
+    if ($this->urlArray[1] === 'profile' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+        $userController->getProfile();
+        return;
+    }
+
+    if ($this->urlArray[1] === 'profile' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $userController->updateProfile();
+        return;
+    }
+}
 
         http_response_code(404);
         echo "Page not found.";
